@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
@@ -76,32 +77,31 @@ fun OnboardingPage1() {
 
             OnboardingAnimation()
 
-            val screenWidth =
-                LocalConfiguration.current.screenWidthDp.dp
-            val screenHeight =
-                LocalConfiguration.current.screenHeightDp.dp
             Image(
                 painter = painterResource(id = R.drawable.bg_onboarding_blue_circle),
                 contentDescription = "Background",
-                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .offset(y = screenHeight * 0.3f)
+                    .graphicsLayer{
+                        transformOrigin = TransformOrigin(0.5f, 0.35f)
+                        scaleX = 2f
+                        scaleY = 2f
+                    }
+                    .fillMaxWidth()
 
             )
 
             Image(
                 painter = painterResource(id = R.drawable.ic_qrispy_onboarding_logo),
                 contentDescription = "Vector Blur",
-                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .wrapContentSize()
                     .blur(
-                        radius = 10.dp,
+                        radius = 20.dp,
                         edgeTreatment = BlurredEdgeTreatment.Unbounded
                     )
                     .align(Alignment.BottomCenter)
                     .alpha(0.2f)
+                    .fillMaxWidth(0.7f)
             )
             Box(
                 modifier = Modifier
