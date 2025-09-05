@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -56,12 +55,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                OnboardingPage1()
             }
         }
     }
@@ -70,84 +64,86 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "Hello $name!", modifier = modifier
     )
 }
+
 @Composable
 fun OnboardingPage1() {
-    _root_ide_package_.androidx.compose.foundation.layout.Column() {
+    Column {
 
-        _root_ide_package_.androidx.compose.foundation.layout.Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize()) {
 
             OnboardingAnimation()
 
             val screenWidth =
-                _root_ide_package_.androidx.compose.ui.platform.LocalConfiguration.current.screenWidthDp.dp
+                LocalConfiguration.current.screenWidthDp.dp
             val screenHeight =
-                _root_ide_package_.androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp.dp
-            _root_ide_package_.androidx.compose.foundation.Image(
-                painter = _root_ide_package_.androidx.compose.ui.res.painterResource(id = R.drawable.bg_onboarding_blue_circle),
+                LocalConfiguration.current.screenHeightDp.dp
+            Image(
+                painter = painterResource(id = R.drawable.bg_onboarding_blue_circle),
                 contentDescription = "Background",
-                contentScale = _root_ide_package_.androidx.compose.ui.layout.ContentScale.Crop,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .align(_root_ide_package_.androidx.compose.ui.Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter)
                     .offset(y = screenHeight * 0.3f)
 
             )
 
-            _root_ide_package_.androidx.compose.foundation.Image(
-                painter = _root_ide_package_.androidx.compose.ui.res.painterResource(id = R.drawable.ic_qrispy_onboarding_logo),
+            Image(
+                painter = painterResource(id = R.drawable.ic_qrispy_onboarding_logo),
                 contentDescription = "Vector Blur",
-                contentScale = _root_ide_package_.androidx.compose.ui.layout.ContentScale.Crop,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .wrapContentSize()
                     .blur(
                         radius = 10.dp,
-                        edgeTreatment = _root_ide_package_.androidx.compose.ui.draw.BlurredEdgeTreatment.Unbounded
+                        edgeTreatment = BlurredEdgeTreatment.Unbounded
                     )
-                    .align(_root_ide_package_.androidx.compose.ui.Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter)
                     .alpha(0.2f)
             )
-            _root_ide_package_.androidx.compose.foundation.layout.Box(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(0.6f)
-                    .align(_root_ide_package_.androidx.compose.ui.Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter)
             ) {
 
 
-                _root_ide_package_.androidx.compose.foundation.layout.Column(
-                    modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
-                    verticalArrangement = _root_ide_package_.androidx.compose.foundation.layout.Arrangement.Bottom
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp),
+                    verticalArrangement = Arrangement.Bottom
                 ) {
                     // Q Icon - sol üstte
-                    _root_ide_package_.androidx.compose.foundation.Image(
-                        painter = _root_ide_package_.androidx.compose.ui.res.painterResource(R.drawable.ic_qrispy_onboarding_logo),
+                    Image(
+                        painter = painterResource(R.drawable.ic_launcher_foreground),
                         contentDescription = "Bonus Icon"
                     )
 
                     // Ana başlık - sol hizalı
                     Text(
                         text = "One eSIM for Internet Everywhere",
-                        style = _root_ide_package_.androidx.compose.material3.MaterialTheme.typography.headlineLarge,
+                        style = MaterialTheme.typography.headlineLarge,
                         fontSize = 32.sp,
-                        fontWeight = _root_ide_package_.androidx.compose.ui.text.font.FontWeight.Bold,
-                        color = _root_ide_package_.androidx.compose.ui.graphics.Color.White,
-                        textAlign = _root_ide_package_.androidx.compose.ui.text.style.TextAlign.Start,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        textAlign = TextAlign.Start,
                         modifier = Modifier.padding(vertical = 16.dp)
                     )
 
                     Text(
                         text = "Install once and connect in over 190 countries.",
-                        style = _root_ide_package_.androidx.compose.material3.MaterialTheme.typography.headlineSmall,
-                        fontWeight = _root_ide_package_.androidx.compose.ui.text.font.FontWeight.Normal,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Normal,
                         fontSize = 14.sp,
-                        color = _root_ide_package_.androidx.compose.ui.graphics.Color.White,
-                        textAlign = _root_ide_package_.androidx.compose.ui.text.style.TextAlign.Start
+                        color = Color.White,
+                        textAlign = TextAlign.Start
                     )
 
-                    _root_ide_package_.androidx.compose.foundation.layout.Spacer(
+                    Spacer(
                         modifier = Modifier.height(
                             16.dp
                         )
@@ -155,23 +151,23 @@ fun OnboardingPage1() {
 
                     // Get Started butonu - ortalanmış
 
-                    _root_ide_package_.androidx.compose.foundation.layout.Spacer(
+                    Spacer(
                         modifier = Modifier.height(
                             16.dp
                         )
                     )
 
                     // Already have account link - ortalanmış
-                    _root_ide_package_.androidx.compose.foundation.layout.Box(
+                    Box(
                         modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = _root_ide_package_.androidx.compose.ui.Alignment.Center
+                        contentAlignment = Alignment.Center
                     ) {
-                        _root_ide_package_.androidx.compose.material3.TextButton(
+                        TextButton(
                             onClick = { /* TODO: Navigate to sign in */ }) {
                             Text(
                                 text = "Already have an account",
                                 fontSize = 16.sp,
-                                color = _root_ide_package_.androidx.compose.ui.graphics.Color.White.copy(
+                                color = Color.White.copy(
                                     alpha = 0.8f
                                 )
                             )
@@ -186,13 +182,11 @@ fun OnboardingPage1() {
 }
 
 data class CarouselItem(
-    val title: String,
-    val icon: String,
-    val backgroundColor: Color,
-    val accentColor: Color
+    val title: String, val icon: String, val backgroundColor: Color, val accentColor: Color
 )
+
 @Composable
-fun OnboardingAnimation(){
+fun OnboardingAnimation() {
     val items = listOf(
         CarouselItem("Pay", "💳", Color(0xFF00D4FF), Color(0xFF00D4FF)),
         CarouselItem("Save", "💎", Color(0xFF00D4FF), Color(0xFF00D4FF)),
@@ -212,15 +206,15 @@ fun OnboardingAnimation(){
 
     Column(
         modifier = Modifier
-            .fillMaxWidth().padding(40.dp)
+            .fillMaxWidth()
+            .padding(40.dp)
             .fillMaxHeight(0.4f),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {
         items.forEachIndexed { index, item ->
             FuseTextItem(
-                item = item,
-                isActive = index == currentIndex
+                item = item, isActive = index == currentIndex
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -228,10 +222,10 @@ fun OnboardingAnimation(){
     }
 
 }
+
 @Composable
 fun FuseTextItem(
-    item: CarouselItem,
-    isActive: Boolean
+    item: CarouselItem, isActive: Boolean
 ) {
     val alpha by animateFloatAsState(
         targetValue = if (isActive) 1f else 0.3f,
@@ -252,14 +246,11 @@ fun FuseTextItem(
             this.alpha = alpha
             scaleX = scale
             scaleY = scale
-        }
-    ) {
+        }) {
         // Icon - sadece aktif olanda göster
         if (isActive) {
             Text(
-                text = item.icon,
-                fontSize = 24.sp,
-                modifier = Modifier.padding(end = 12.dp)
+                text = item.icon, fontSize = 24.sp, modifier = Modifier.padding(end = 12.dp)
             )
         } else {
             // Boş alan bırak ki hizalama bozulmasın
@@ -275,6 +266,7 @@ fun FuseTextItem(
         )
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
